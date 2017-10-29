@@ -1,0 +1,12 @@
+version: '2'
+services:
+  rqalpha:
+    image: rqalpha:0.1
+    build: .
+    container_name: rqalpha
+    volumes:
+      - ./examples:/root/code
+      - ./matplotlibrc:/root/.config/matplotlib/matplotlibrc
+    tty: true
+    entrypoint: bash
+
