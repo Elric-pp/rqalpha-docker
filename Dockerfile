@@ -20,4 +20,14 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple TA-Lib
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple rqalpha
 RUN rqalpha version
 RUN rqalpha update_bundle
+# 回退到 pandas 0.20.0， 由于 0.21.0 报错
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pandas==0.20.0
+# 安装中文字体
+RUN mkdir /usr/share/fonts/chinese && \
+  cd /usr/share/fonts/chinese && \
+  wget https://static.ricequant.com/data/WenQuanYi%20Micro%20Hei.ttf && \
+  fc-cache -fv && \
+  fc-list && \
+  rm -rf ~/.cache/matplotlib && \
+  rm -rf ~/.fontconfig
 # CMD make run
